@@ -1,0 +1,139 @@
+/* ============================================================
+   script.js  —  Portfolio JavaScript
+   Linked from: index.html  (placed just before </body>)
+   ============================================================ */
+
+
+/* ============================================================
+   ASSIGNMENT LINKS
+   Replace each placeholder URL with your actual assignment page URL.
+   Example:  1: 'assignment1.html'
+             or a full URL: 'https://yoursite.com/assignment1'
+   ============================================================ */
+const assignmentLinks = {
+    1: '#assignment-1-url',   /* <-- Assignment 1 URL */
+    2: '#assignment-2-url',   /* <-- Assignment 2 URL */
+    3: '#assignment-3-url',   /* <-- Assignment 3 URL */
+    4: '#assignment-4-url',   /* <--  Assignment 4 URL */
+    5: '#assignment-5-url',   /* <-- Assignment 5 URL */
+};
+
+
+/* ============================================================
+   FUNCTION: openAssignment
+   Called by onclick on each assignment card.
+   Opens the matching URL in a new browser tab.
+   ============================================================ */
+function openAssignment(event, num) {
+    event.preventDefault(); /* stops the # href from jumping the page */
+
+    const url = assignmentLinks[num];
+    const placeholder = '#assignment-' + num + '-url';
+
+    if (url && url !== placeholder) {
+        window.open(url, '_blank');
+    } else {
+        alert(
+            'Assignment ' + num + ' URL not set yet.\n\n' +
+            'Open script.js and replace the value for key ' + num + ' in the assignmentLinks object.'
+        );
+    }
+}
+
+
+/* ============================================================
+   FUNCTION: sendMessage
+   Handles the contact form send button.
+   Shows a loading state, then a success confirmation.
+   ============================================================ */
+function sendMessage() {
+    const btn = document.querySelector('.btn-send');
+
+    /* Loading state */
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    /* Simulate sending (replace setTimeout with a real API call) */
+    setTimeout(function () {
+        btn.textContent = 'Message Sent ✓';
+        btn.style.background = 'var(--accent3)';   /* turns green */
+
+        /* Reset button after 3 seconds */
+        setTimeout(function () {
+            btn.textContent = 'Send Message ✦';
+            btn.style.background = '';
+            btn.disabled = false;
+        }, 3000);
+
+    }, 1200);
+}
+
+
+/* ============================================================
+   SCROLL ANIMATIONS
+   Uses IntersectionObserver to add .visible class when
+   .fade-in and .gallery-item elements enter the viewport.
+   CSS then transitions them from hidden to visible.
+   ============================================================ */
+const scrollObserver = new IntersectionObserver(
+    function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    },
+    { threshold: 0.12 }
+);
+
+/* Observe every fade-in element and every gallery item */
+document.querySelectorAll('.fade-in, .gallery-item').forEach(function (el) {
+    scrollObserver.observe(el);
+});
+
+
+/* ============================================================
+   ACTIVE NAV LINK HIGHLIGHT
+   Watches scroll position and highlights the nav link that
+   matches the currently visible section.
+   ============================================================ */
+const allSections = document.querySelectorAll('section[id]');
+const allNavLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', function () {
+    let currentSection = '';
+
+    allSections.forEach(function (section) {
+        if (window.scrollY >= section.offsetTop - 100) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+
+    allNavLinks.forEach(function (link) {
+        const linkTarget = link.getAttribute('href'); /* e.g. "#about" */
+        if (linkTarget === '#' + currentSection) {
+            link.style.color = 'var(--accent)';
+        } else {
+            link.style.color = '';  /* resets to CSS default */
+        }
+    });
+});
+
+
+/* ============================================================
+   SMOOTH SCROLL FOR NAV LINKS (backup for older browsers)
+   Modern browsers use CSS scroll-behavior:smooth on html,
+   but this ensures consistency everywhere.
+   ============================================================ */
+allNavLinks.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+        const targetId = link.getAttribute('href');
+        if (targetId.startsWith('#')) {
+            e.preventDefault();
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    });
+});
