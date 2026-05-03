@@ -1044,28 +1044,31 @@ footer span {
    RESPONSIVE — MOBILE
    ============================================================ */
 @media (max-width: 768px) {
-
+    /* Existing Fixes */
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
+    section { padding: 60px 1.25rem; } /* Slightly tighter padding for small screens */
 
-    section { padding: 70px 1.5rem; }
-
-    .hero-grid {
+    .hero-grid,
+    .about-inner,
+    .projects-grid,
+    .contact-inner {
         grid-template-columns: 1fr;
         text-align: center;
     }
 
     .hero-photo { margin: 0 auto; }
-    .hero-cta   { justify-content: center; }
+    .hero-cta { justify-content: center; }
 
-    .about-inner    { grid-template-columns: 1fr; }
-    .projects-grid  { grid-template-columns: 1fr; }
-    .contact-inner  { grid-template-columns: 1fr; }
-
+    /* The Perfect Gallery Fix */
     .gallery-grid {
-        grid-template-columns: 1fr 1fr;
+        display: grid;
+        /* Switches to 1 column on very small screens, auto-fits otherwise */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
         grid-template-rows: auto;
     }
+}
 
     /* Reset all gallery spans on mobile */
     .gallery-item:nth-child(n) {
