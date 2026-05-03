@@ -1248,7 +1248,24 @@ footer span {
         min-height: 160px;
     }
 
-    /* Reset all gallery spans on mobile */
+    /* ----------------------------------------------------------
+       CONTACT
+    ---------------------------------------------------------- */
+    .contact-inner  { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-info h3 { font-size: 1.2rem; }
+    .contact-link   { padding: 0.85rem 1rem; }
+
+    /* Prevent long email/phone text from overflowing the card */
+    .contact-link-text {
+        font-size: 0.82rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
+    }
+}
+
+
+/* Reset all gallery spans on mobile */
     .gallery-item:nth-child(n) {
         grid-column: span 1;
         grid-row: span 1;
