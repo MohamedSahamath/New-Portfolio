@@ -1040,39 +1040,268 @@ footer span {
     color: var(--accent);
 }
 
-/* ============================================================
-   RESPONSIVE — MOBILE
+//* ============================================================
+   RESPONSIVE CSS — Portfolio
+   Three breakpoints:
+     1. Tablet       →  max-width: 1024px
+     2. Mobile       →  max-width: 768px
+     3. Small phones →  max-width: 420px
    ============================================================ */
-@media (max-width: 600px) {
 
-    nav { padding: 0 1.5rem; }
-    .nav-links { display: none; }
 
-    section { padding: 70px 1.5rem; }
+/* ============================================================
+   1. TABLET  (768px – 1024px)
+      Tighten gaps and shrink the profile photo slightly.
+      Everything else stays in its desktop layout.
+   ============================================================ */
+@media (max-width: 1024px) {
+
+    .hero-grid   { gap: 2rem; }
+    .about-inner { gap: 3rem; }
+    .contact-inner { gap: 3rem; }
+
+    .hero-photo {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+
+/* ============================================================
+   2. MOBILE  (≤ 768px)
+      Full single-column layout, hamburger nav, resized type.
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* ----------------------------------------------------------
+       NAVIGATION
+       Hide the horizontal link list, show a hamburger button.
+       The button is toggled open/closed by toggleNav() in script.js
+    ---------------------------------------------------------- */
+    nav {
+        padding: 0 1.2rem;
+        height: 58px;
+    }
+
+    /* Dropdown menu — hidden by default, shown when JS adds .open */
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 58px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 1rem 0 1.5rem;
+        background: rgba(5, 7, 15, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        z-index: 99;
+    }
+
+    .nav-links.open { display: flex; }   /* JS adds this class */
+
+    .nav-links li    { width: 100%; text-align: center; }
+    .nav-links a     { display: block; padding: 0.8rem 1rem; font-size: 1rem; }
+
+    /* Hamburger icon — three bars that animate into an X */
+    .nav-hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        padding: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav-hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: all 0.3s;
+    }
+
+    /* Animate bars → X when .active is added by JS */
+    .nav-hamburger.active span:nth-child(1) { transform: translateY(7px)  rotate(45deg);  }
+    .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+    /* ----------------------------------------------------------
+       GLOBAL SECTION
+    ---------------------------------------------------------- */
+    section { padding: 60px 1.2rem; }
+
+    .section-title {
+        font-size: clamp(1.6rem, 7vw, 2.4rem);
+        margin-bottom: 2rem;
+    }
+
+
+    /* ----------------------------------------------------------
+       HERO
+       Photo moves above the text; name shrinks; buttons centre.
+    ---------------------------------------------------------- */
+    #hero {
+        padding-top: 100px;
+        min-height: 100svh;   /* svh = small viewport height — fixes mobile browser chrome */
+    }
 
     .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2.5rem;
     }
 
-    .hero-photo { margin: 0 auto; }
-    .hero-cta   { justify-content: center; }
+    /* Swap order: photo first, then text */
+    .hero-grid > div:first-child { order: 2; }
 
-    .about-inner    { grid-template-columns: 1fr; }
-    .projects-grid  { grid-template-columns: 1fr; }
-    .contact-inner  { grid-template-columns: 1fr; }
+    .hero-photo {
+        order: 1;
+        margin: 0 auto;
+        width: 180px;
+        height: 180px;
+    }
 
+    .hero-name  { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+    .hero-role  { font-size: 0.95rem; }
+
+    .hero-cta {
+        justify-content: center;
+        gap: 0.8rem;
+        margin-top: 1.8rem;
+    }
+
+    .btn { padding: 0.7rem 1.4rem; font-size: 0.85rem; }
+
+    /* Shrink background orbs so they don't cause side-scroll */
+    .orb1 { width: 250px; height: 250px; }
+    .orb2 { width: 200px; height: 200px; }
+    .orb3 { width: 150px; height: 150px; }
+
+
+    /* ----------------------------------------------------------
+       ABOUT
+    ---------------------------------------------------------- */
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+
+    .about-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .stat-card { padding: 1.2rem; }
+    .stat-num  { font-size: 2rem; }
+
+
+    /* ----------------------------------------------------------
+       EDUCATION
+    ---------------------------------------------------------- */
+    .edu-timeline { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .edu-card     { padding: 1.4rem 1rem; }
+
+
+    /* ----------------------------------------------------------
+       SKILLS  (scrolling train)
+       Narrow the edge-fade so pills aren't hidden too much.
+    ---------------------------------------------------------- */
+    .train-track::before,
+    .train-track::after { width: 50px; }
+
+    .skill-pill { padding: 0.55rem 1rem; font-size: 0.82rem; }
+
+
+    /* ----------------------------------------------------------
+       PROJECTS
+    ---------------------------------------------------------- */
+    .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+    .project-banner { height: 140px; font-size: 3rem; }
+    .project-body   { padding: 1.3rem; }
+
+
+    /* ----------------------------------------------------------
+       ASSIGNMENTS
+    ---------------------------------------------------------- */
+    .assignments-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .assignment-card { padding: 1.5rem 1rem; }
+    .assignment-num  { font-size: 2rem; }
+
+
+    /* ----------------------------------------------------------
+       GALLERY
+       2-column grid; first photo spans both columns as a hero.
+    ---------------------------------------------------------- */
     .gallery-grid {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
+        gap: 0.8rem;
     }
 
-    /* Reset all gallery spans on mobile */
     .gallery-item:nth-child(n) {
         grid-column: span 1;
         grid-row: span 1;
+        min-height: 130px;
+    }
+
+    .gallery-item:nth-child(1) {
+        grid-column: span 2;   /* first photo is wide */
         min-height: 160px;
     }
 
-    .gallery-item:nth-child(1) { grid-column: span 2; }
+
+    /* ----------------------------------------------------------
+       CONTACT
+    ---------------------------------------------------------- */
+    .contact-inner  { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-info h3 { font-size: 1.2rem; }
+    .contact-link   { padding: 0.85rem 1rem; }
+
+    /* Prevent long email/phone text from overflowing the card */
+    .contact-link-text {
+        font-size: 0.82rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
+    }
+}
+
+
+/* ============================================================
+   3. SMALL PHONES  (≤ 420px)
+      iPhone SE, small Androids — tighter spacing, stacked CTA.
+   ============================================================ */
+@media (max-width: 420px) {
+
+    section { padding: 50px 1rem; }
+
+    /* Smaller profile photo */
+    .hero-photo { width: 150px; height: 150px; }
+
+    /* Slightly smaller name on very narrow screens */
+    .hero-name { font-size: clamp(2rem, 12vw, 2.8rem); }
+
+    /* Stack CTA buttons vertically, full width */
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn { width: 100%; text-align: center; }
+
+    /* Education drops to single column */
+    .edu-timeline { grid-template-columns: 1fr; }
+
+    /* Gallery drops to single column */
+    .gallery-grid { grid-template-columns: 1fr; gap: 0.7rem; }
+
+    .gallery-item:nth-child(n) {
+        grid-column: span 1;
+        min-height: 180px;
+    }
+
+    .contact-inner { gap: 1.5rem; }
 }
