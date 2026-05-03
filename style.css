@@ -1065,6 +1065,125 @@ footer span {
         height: 200px;
     }
 }
+
+/* ============================================================
+   2. MOBILE  (≤ 768px)
+      Full single-column layout, hamburger nav, resized type.
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* ----------------------------------------------------------
+       NAVIGATION
+       Hide the horizontal link list, show a hamburger button.
+       The button is toggled open/closed by toggleNav() in script.js
+    ---------------------------------------------------------- */
+    nav {
+        padding: 0 1.2rem;
+        height: 58px;
+    }
+
+    /* Dropdown menu — hidden by default, shown when JS adds .open */
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 58px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 1rem 0 1.5rem;
+        background: rgba(5, 7, 15, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        z-index: 99;
+    }
+
+    .nav-links.open { display: flex; }   /* JS adds this class */
+
+    .nav-links li    { width: 100%; text-align: center; }
+    .nav-links a     { display: block; padding: 0.8rem 1rem; font-size: 1rem; }
+
+    /* Hamburger icon — three bars that animate into an X */
+    .nav-hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        padding: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav-hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: all 0.3s;
+    }
+
+    /* Animate bars → X when .active is added by JS */
+    .nav-hamburger.active span:nth-child(1) { transform: translateY(7px)  rotate(45deg);  }
+    .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+    /* ----------------------------------------------------------
+       GLOBAL SECTION
+    ---------------------------------------------------------- */
+    section { padding: 60px 1.2rem; }
+
+    .section-title {
+        font-size: clamp(1.6rem, 7vw, 2.4rem);
+        margin-bottom: 2rem;
+    }
+
+
+    /* ----------------------------------------------------------
+       HERO
+       Photo moves above the text; name shrinks; buttons centre.
+    ---------------------------------------------------------- */
+    #hero {
+        padding-top: 100px;
+        min-height: 100svh;   /* svh = small viewport height — fixes mobile browser chrome */
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+    }
+
+    /* Swap order: photo first, then text */
+    .hero-grid > div:first-child { order: 2; }
+
+    .hero-photo {
+        order: 1;
+        margin: 0 auto;
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero-name  { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+    .hero-role  { font-size: 0.95rem; }
+
+    .hero-cta {
+        justify-content: center;
+        gap: 0.8rem;
+        margin-top: 1.8rem;
+    }
+
+    .btn { padding: 0.7rem 1.4rem; font-size: 0.85rem; }
+
+    /* Shrink background orbs so they don't cause side-scroll */
+    .orb1 { width: 250px; height: 250px; }
+    .orb2 { width: 200px; height: 200px; }
+    .orb3 { width: 150px; height: 150px; }
+
+
     /* Reset all gallery spans on mobile */
     .gallery-item:nth-child(n) {
         grid-column: span 1;
