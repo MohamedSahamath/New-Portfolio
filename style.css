@@ -1043,7 +1043,7 @@ footer span {
 /* ============================================================
    RESPONSIVE — MOBILE
    ============================================================ */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
