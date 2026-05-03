@@ -1264,6 +1264,42 @@ footer span {
     }
 }
 
+/* ============================================================
+   3. SMALL PHONES  (≤ 420px)
+      iPhone SE, small Androids — tighter spacing, stacked CTA.
+   ============================================================ */
+@media (max-width: 420px) {
+
+    section { padding: 50px 1rem; }
+
+    /* Smaller profile photo */
+    .hero-photo { width: 150px; height: 150px; }
+
+    /* Slightly smaller name on very narrow screens */
+    .hero-name { font-size: clamp(2rem, 12vw, 2.8rem); }
+
+    /* Stack CTA buttons vertically, full width */
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn { width: 100%; text-align: center; }
+
+    /* Education drops to single column */
+    .edu-timeline { grid-template-columns: 1fr; }
+
+    /* Gallery drops to single column */
+    .gallery-grid { grid-template-columns: 1fr; gap: 0.7rem; }
+
+    .gallery-item:nth-child(n) {
+        grid-column: span 1;
+        min-height: 180px;
+    }
+
+    .contact-inner { gap: 1.5rem; }
+}
+
 
 /* Reset all gallery spans on mobile */
     .gallery-item:nth-child(n) {
