@@ -1183,6 +1183,15 @@ footer span {
     .orb2 { width: 200px; height: 200px; }
     .orb3 { width: 150px; height: 150px; }
 
+    /* ----------------------------------------------------------
+       ABOUT
+    ---------------------------------------------------------- */
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+
+    .about-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .stat-card { padding: 1.2rem; }
+    .stat-num  { font-size: 2rem; }
 
     /* Reset all gallery spans on mobile */
     .gallery-item:nth-child(n) {
