@@ -1193,6 +1193,31 @@ footer span {
     .stat-card { padding: 1.2rem; }
     .stat-num  { font-size: 2rem; }
 
+    /* ----------------------------------------------------------
+       EDUCATION
+    ---------------------------------------------------------- */
+    .edu-timeline { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .edu-card     { padding: 1.4rem 1rem; }
+
+
+    /* ----------------------------------------------------------
+       SKILLS  (scrolling train)
+       Narrow the edge-fade so pills aren't hidden too much.
+    ---------------------------------------------------------- */
+    .train-track::before,
+    .train-track::after { width: 50px; }
+
+    .skill-pill { padding: 0.55rem 1rem; font-size: 0.82rem; }
+
+
+    /* ----------------------------------------------------------
+       PROJECTS
+    ---------------------------------------------------------- */
+    .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+    .project-banner { height: 140px; font-size: 3rem; }
+    .project-body   { padding: 1.3rem; }
+
     /* Reset all gallery spans on mobile */
     .gallery-item:nth-child(n) {
         grid-column: span 1;
