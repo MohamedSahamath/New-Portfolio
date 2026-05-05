@@ -11,9 +11,9 @@
              or a full URL: 'https://yoursite.com/assignment1'
    ============================================================ */
 const assignmentLinks = {
-    1: '#assignment-1-url',   /* <-- Assignment 1 URL */
-    2: '#assignment-2-url',   /* <-- Assignment 2 URL */
-    3: '#assignment-3-url',   /* <-- Assignment 3 URL */
+    1: 'https://github.com/MohamedSahamath/Assignments/tree/main/JS_Ex-main/case_01(Calculater)',   /* <-- Assignment 1 URL */
+    2: 'https://github.com/MohamedSahamath/Assignments/blob/main/JS_Ex-main/case_02/index.html',   /* <-- Assignment 2 URL */
+    3: 'https://github.com/MohamedSahamath/Assignments/blob/main/JS_Ex-main/case_03/index.html',   /* <-- Assignment 3 URL */
     4: '#assignment-4-url',   /* <--  Assignment 4 URL */
     5: '#assignment-5-url',   /* <-- Assignment 5 URL */
 };
