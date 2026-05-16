@@ -6,16 +6,12 @@
 
 /* ============================================================
    ASSIGNMENT LINKS
-   Replace each placeholder URL with your actual assignment page URL.
-   Example:  1: 'assignment1.html'
-             or a full URL: 'https://yoursite.com/assignment1'
    ============================================================ */
 const assignmentLinks = {
     1: 'https://github.com/MohamedSahamath/Assignments/tree/main/JS_Ex-main/case_01(Calculater)',   /* <-- Assignment 1 URL */
     2: 'https://github.com/MohamedSahamath/Assignments/blob/main/JS_Ex-main/case_02/index.html',   /* <-- Assignment 2 URL */
     3: 'https://github.com/MohamedSahamath/Assignments/blob/main/JS_Ex-main/case_03/index.html',   /* <-- Assignment 3 URL */
-    4: '#assignment-4-url',   /* <--  Assignment 4 URL */
-    5: '#assignment-5-url',   /* <-- Assignment 5 URL */
+
 };
 
 
@@ -53,7 +49,7 @@ function sendMessage() {
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
-    /* Simulate sending (replace setTimeout with a real API call) */
+    /* Simulate sending  */
     setTimeout(function () {
         btn.textContent = 'Message Sent ✓';
         btn.style.background = 'var(--accent3)';   /* turns green */
